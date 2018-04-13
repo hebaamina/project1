@@ -1,0 +1,74 @@
+#!/bin/sh 
+if test -z "$1" 
+then echo "expected arguments, please check the help : ./intidev -help"
+retour=1
+elfi [$1 = "-help"]
+then 
+echo "intidev "
+echo "notre application consiste à crée un repertoire contient nom de projet \n les fichiers dans le repertoire"
+echo "./intidev -nom projet -type projet -type license -crée un git"
+echo "nom de projet \n type de projet c++/c/Latex/python \n le type de license MIT/GPL \n on crée un git"
+echo "hebaamina email : hebaamina9@gmail.com"
+mkdir "$1" 
+case $2 in 
+      "-c++")
+           mkdir "$1"/main 
+           echo "#include <stdio.h>
+                 int main( int argc, const char* argv[] )
+{
+	        printf( "\nHello World\n\n" );
+ }" "$1"/main/main.cpp
+if [ $3 = "-git" ]
+then 
+ mkdir "$1" /gitignore.cpp
+fi
+;;
+    "-c")
+        mkdir "$1"/main
+        echo "#include <stdio.h>
+              #include <stdlib.h>
+
+             int main()
+{
+    printf("\n Hello world\n\n");
+     return 0;
+}" "$1" /main/main.c
+if [$3 = "-git" ]
+then 
+ mkdir "$1"/gitignore.c
+fi
+;;
+     "-Latex")
+             mkdir "$1"/main
+             echo " \documentclass{article} \n
+                    \usepackage[utf8]{inputenc}
+                    \usepackage[english]{babel}
+                    \usepackage{graphicx}
+                    \graphicspath{{images/}{../images/}}
+                      \begin{document}
+                   \section{Introduction}
+                    \subfile{sections/introduction}
+                    \section{Second section}
+                    \end{document}" "$1" /main/main.Latex
+if [$3 = "-git" ]
+then 
+mkdir "$1" /gitgnore.Latex
+fi
+;;
+      "-python")
+      mkdir "$1"/main 
+      echo   " if __name__ == "__main__":
+    main() " "$1" /main/main.py
+if [$3 = "-git" ]
+then 
+mkdir "$1" /gitignore.py
+fi
+;;
+         "-GPL") #il ya un fichier de LICENSE 
+               mkdir "$1" /LICENSE 
+               
+         "-MIT") #il ya un fichier de LICENSE
+               mkdir "$1" /LICENSE
+esac 
+mkdir "$1" /makefile 
+
